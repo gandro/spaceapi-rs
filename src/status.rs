@@ -546,16 +546,16 @@ mod test {
 
     #[test]
     fn serialize_extension_fields_empty() {
-        let status = StatusBuilder::new("foo")
-            .logo("bar")
-            .url("foobar")
+        let status = StatusBuilder::new("a")
+            .logo("b")
+            .url("c")
             .location(Location::default())
             .contact(Contact::default())
             .build();
         assert!(status.is_ok());
         assert_eq!(
             &to_string(&status.unwrap()).unwrap(),
-            "{\"api\":\"0.13\",\"space\":\"0.13\",\"logo\":\"bar\",\"url\":\"foobar\",\
+            "{\"api\":\"0.13\",\"space\":\"a\",\"logo\":\"b\",\"url\":\"c\",\
             \"location\":{\"lat\":0.0,\"lon\":0.0},\"contact\":{},\"issue_report_channels\":[],\
             \"state\":{\"open\":null}}"
         );
@@ -563,9 +563,9 @@ mod test {
 
     #[test]
     fn serialize_extension_fields() {
-        let status = StatusBuilder::new("foo")
-            .logo("bar")
-            .url("foobar")
+        let status = StatusBuilder::new("a")
+            .logo("b")
+            .url("c")
             .location(Location::default())
             .contact(Contact::default())
             .add_extension("aaa", Value::String("xxx".into()))
@@ -574,7 +574,7 @@ mod test {
         assert!(status.is_ok());
         assert_eq!(
             &to_string(&status.unwrap()).unwrap(),
-            "{\"api\":\"0.13\",\"space\":\"0.13\",\"logo\":\"bar\",\"url\":\"foobar\",\
+            "{\"api\":\"0.13\",\"space\":\"a\",\"logo\":\"b\",\"url\":\"c\",\
             \"location\":{\"lat\":0.0,\"lon\":0.0},\"contact\":{},\"issue_report_channels\":[],\
             \"state\":{\"open\":null},\"ext_aaa\":\"xxx\",\"ext_bbb\":[null,42]}"
         );
