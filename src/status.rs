@@ -459,7 +459,7 @@ impl StatusBuilder {
     /// already present.
     pub fn add_extension<S: Into<String>>(mut self, name: S, value: Value) -> Self {
         let mut key = name.into();
-        if !key.starts_with("ext") {
+        if !key.starts_with("ext_") {
             key = String::from("ext_") + &key;
         }
         self.extensions.insert(key, value);
